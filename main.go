@@ -242,7 +242,9 @@ func main() {
 
 	c,err := readCookie(cookiePath)	
 	if (err != nil) {
+
 		fmt.Println("cookie get failed! ",err)
+		fmt.Fprintf(os.Stderr,"Usage: go-spider [-d days | -c cookie-path]\n")
 		return
 	}
 	cookie = c
