@@ -7,10 +7,7 @@ import (
 
 // 判断date是否合法
 func dateCheck(date string) bool {
-	if len(date) != 8 {
-		return false
-	}
-	return true
+	return len(date) == 8	
 }
 
 func GetDate(biasDays int) string {

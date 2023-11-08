@@ -22,13 +22,13 @@ func pathExist(path string) bool {
 func Mkdir(date string, rootAddress string) string {
 	year := date[0:4] + "/"
 	month := date[4:6] + "/"
-	if pathExist(rootAddress+year) == false {
+	if !pathExist(rootAddress+year) {
 		err := os.Mkdir(rootAddress+year, 0755)
 		if err != nil {
 			fmt.Println("文件夹创建失败 ", err)
 		}
 	}
-	if pathExist(rootAddress+year+month) == false {
+	if !pathExist(rootAddress+year+month) {
 		err := os.Mkdir(rootAddress+year+month, 0755) // 不应为0777, 否则会有权限报错
 		if err != nil {
 			fmt.Println("文件夹创建失败 ", err)
