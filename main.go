@@ -232,21 +232,26 @@ func main() {
 	status := false
 
 	flag.IntVar(&days, "d", 100, "爬取天数")
-	flag.StringVar(&cookiePath, "c", "", "cookie")
+	flag.StringVar(&cookiePath, "c", "", "cookie路径 (必填)")
 	flag.StringVar(&R18_mode, "r18", "off", "R18模式")
-	if R18_mode == "on" {
-		status = true
-	}
+
 	// 解析命令行参数
 	flag.Parse()
 
+
+	if R18_mode == "on" {
+		status = true
+	}
 	c, err := readCookie(cookiePath)
 	if err != nil {
-
-		fmt.Println("cookie get failed! ", err)
-		fmt.Fprintf(os.Stderr, "Usage: go-spider [-d days | -c cookie-file -r18 on/off ]\n")
+        fmt.Fprintf(os.Stderr, "Usage of %s:\n", os.Args[0])
+        flag.PrintDefaults()
 		return
 	}
+
+
+
+
 	cookie = c
 	fmt.Printf("将尝试下载 %d 张图片\n", days)
 
